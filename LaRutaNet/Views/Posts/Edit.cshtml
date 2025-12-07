@@ -1,0 +1,104 @@
+﻿@model LaRutaNet.Models.Post
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Post</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Comentarios" class="control-label"></label>
+                <input asp-for="Comentarios" class="form-control" />
+                <span asp-validation-for="Comentarios" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compartidos" class="control-label"></label>
+                <input asp-for="Compartidos" class="form-control" />
+                <span asp-validation-for="Compartidos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contenido" class="control-label"></label>
+                <input asp-for="Contenido" class="form-control" />
+                <span asp-validation-for="Contenido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCreacion" class="control-label"></label>
+                <input asp-for="FechaCreacion" class="form-control" />
+                <span asp-validation-for="FechaCreacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HasMedia" class="control-label"></label>
+                <input asp-for="HasMedia" class="form-control" />
+                <span asp-validation-for="HasMedia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagePublicId" class="control-label"></label>
+                <input asp-for="ImagePublicId" class="form-control" />
+                <span asp-validation-for="ImagePublicId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageThumbnailUrl" class="control-label"></label>
+                <input asp-for="ImageThumbnailUrl" class="form-control" />
+                <span asp-validation-for="ImageThumbnailUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Likes" class="control-label"></label>
+                <input asp-for="Likes" class="form-control" />
+                <span asp-validation-for="Likes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaActualizacion" class="control-label"></label>
+                <input asp-for="FechaActualizacion" class="form-control" />
+                <span asp-validation-for="FechaActualizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label"></label>
+                <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CommunityId" class="control-label"></label>
+                <select asp-for="CommunityId" class="form-control" asp-items="ViewBag.CommunityId"></select>
+                <span asp-validation-for="CommunityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceId" class="control-label"></label>
+                <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+                <span asp-validation-for="ServiceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioDestinoId" class="control-label"></label>
+                <select asp-for="UsuarioDestinoId" class="form-control" asp-items="ViewBag.UsuarioDestinoId"></select>
+                <span asp-validation-for="UsuarioDestinoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

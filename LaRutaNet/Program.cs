@@ -13,6 +13,9 @@ builder.Services.AddRazorPages();
 var conString = builder.Configuration.GetConnectionString("conexion") ??
      throw new InvalidOperationException("Connection string 'conexion'" +
     " not found.");
+builder.Services.AddDbContext<LarutaContext>(options =>
+      options.UseMySql(conString, Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.44-mysql")));
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(conString, ServerVersion.AutoDetect(conString)));
 
