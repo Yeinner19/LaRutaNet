@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaRutaNet.Data;
+using System;
 using System.Collections.Generic;
 
 namespace LaRutaNet.Models;
@@ -9,7 +10,7 @@ public partial class Community
 
     public ulong Active { get; set; }
 
-    public ulong AllowsPosts { get; set; }
+    public ulong? AllowsPosts { get; set; }
 
     public string? BannerPublicId { get; set; }
 
@@ -33,9 +34,10 @@ public partial class Community
 
     public long CreatorId { get; set; }
 
+
     public virtual ICollection<CommunityMembership> CommunityMemberships { get; set; } = new List<CommunityMembership>();
 
-    public virtual User Creator { get; set; } = null!;
+    public virtual User? Creator { get; set; } = null!;
 
     public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
 
