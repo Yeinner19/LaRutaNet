@@ -40,9 +40,8 @@ namespace LaRutaNet.Controllers
                 service.Active = 1;
                 service.CreatedAt = DateTime.UtcNow;
 
-                // 👉 Valores obligatorios para NO reventar por FK
-                service.CommunityId = 2;    // FIJO
-                service.UserHistoryId = 1;  // FIJO
+                service.CommunityId = 2;   
+                service.UserHistoryId = 1;
 
                 _context.Services.Add(service);
                 await _context.SaveChangesAsync();
@@ -53,9 +52,6 @@ namespace LaRutaNet.Controllers
         }
 
 
-        // =============================
-        // EDITAR GET
-        // =============================
         public async Task<IActionResult> Edit(long id)
         {
             var service = await _context.Services.FindAsync(id);
@@ -65,9 +61,6 @@ namespace LaRutaNet.Controllers
             return View(service);
         }
 
-        // =============================
-        // EDITAR POST (CORREGIDO)
-        // =============================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Service service)
@@ -77,13 +70,10 @@ namespace LaRutaNet.Controllers
 
             if (ModelState.IsValid)
             {
-                // 🔥 IMPORTANTE:
-                // Volver a asignar FK obligatorias
-                service.CommunityId = 2;   // MISMO VALOR QUE CREATE
-                service.UserHistoryId = 1; // MISMO VALOR QUE CREATE
+                
+                service.CommunityId = 2;   
+                service.UserHistoryId = 1; 
 
-                // No tienes UpdatedAt → no lo usamos
-                // service.UpdatedAt = DateTime.UtcNow;
 
                 _context.Services.Update(service);
                 await _context.SaveChangesAsync();
