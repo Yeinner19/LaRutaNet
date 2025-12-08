@@ -1,9 +1,12 @@
+
+using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 using LaRutaNet.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LaRutaNet.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
