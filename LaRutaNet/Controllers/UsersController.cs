@@ -55,15 +55,22 @@ namespace LaRutaNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Active,AvatarPublicId,AvatarUrl,BannerPublicId,BannerUrl,DateOfBirth,DateOfCreation,DeletedAt,Email,EmailVerified,FirstName,Gender,Height,LastName,Password,PasswordUpdatedAt,ResetPasswordToken,ResetPasswordTokenExpiry,Role,SecondLastName,SecondName,Username,VerificationToken,VerificationTokenExpiry,Weight")] User user)
+        public async Task<IActionResult> Create(User user)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(user);
             }
-            return View(user);
+
+            user.Active = 1;
+            user.EmailVerified = 0;
+            user.DateOfCreation = DateTime.UtcNow;
+            user.Role = "CLIENT";
+
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Users/Edit/5
@@ -87,35 +94,51 @@ namespace LaRutaNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Active,AvatarPublicId,AvatarUrl,BannerPublicId,BannerUrl,DateOfBirth,DateOfCreation,DeletedAt,Email,EmailVerified,FirstName,Gender,Height,LastName,Password,PasswordUpdatedAt,ResetPasswordToken,ResetPasswordTokenExpiry,Role,SecondLastName,SecondName,Username,VerificationToken,VerificationTokenExpiry,Weight")] User user)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Active,Email,FirstName,Gender,Height,LastName,Role,SecondLastName,SecondName,Username,Weight,Password")] User user)
         {
             if (id != user.Id)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(user);
+                    
+                    var userDb = await _context.Users.FindAsync(id);
+                    if (userDb == null)
+                        return NotFound();
+
+                    
+                    userDb.Active = user.Active;
+                    userDb.Email = user.Email;
+                    userDb.FirstName = user.FirstName;
+                    userDb.Gender = user.Gender;
+                    userDb.Height = user.Height;
+                    userDb.LastName = user.LastName;
+                    userDb.Role = user.Role;
+                    userDb.SecondLastName = user.SecondLastName;
+                    userDb.SecondName = user.SecondName;
+                    userDb.Username = user.Username;
+                    userDb.Weight = user.Weight;
+                    userDb.Password = user.Password; 
+
+                 
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!UserExists(user.Id))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(user);
         }
+
 
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(long? id)

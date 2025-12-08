@@ -1,153 +1,109 @@
 ﻿@model LaRutaNet.Models.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Usuario";
 }
 
-<h1>Create</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+
+                    <h3 class="text-center mb-4">Crear Usuario</h3>
+
+                    <form asp-action="Create">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <input type="hidden" asp-for="Role" value="CLIENT" />
+                        <input type="hidden" asp-for="Active" value="1" />
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="form-label fw-semibold"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Username" class="form-label fw-semibold"></label>
+                                <input asp-for="Username" class="form-control" />
+                                <span asp-validation-for="Username" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FirstName" class="form-label fw-semibold"></label>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="SecondName" class="form-label fw-semibold"></label>
+                                <input asp-for="SecondName" class="form-control" />
+                                <span asp-validation-for="SecondName" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LastName" class="form-label fw-semibold"></label>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="SecondLastName" class="form-label fw-semibold"></label>
+                                <input asp-for="SecondLastName" class="form-control" />
+                                <span asp-validation-for="SecondLastName" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Gender" class="form-label fw-semibold"></label>
+                                <input asp-for="Gender" class="form-control" />
+                                <span asp-validation-for="Gender" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Password" class="form-label fw-semibold"></label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Height" class="form-label fw-semibold"></label>
+                                <input asp-for="Height" class="form-control" />
+                                <span asp-validation-for="Height" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label asp-for="Weight" class="form-label fw-semibold"></label>
+                                <input asp-for="Weight" class="form-control" />
+                                <span asp-validation-for="Weight" class="text-danger small"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                ← Volver
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4">
+                                Crear Usuario
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="AvatarPublicId" class="control-label"></label>
-                <input asp-for="AvatarPublicId" class="form-control" />
-                <span asp-validation-for="AvatarPublicId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AvatarUrl" class="control-label"></label>
-                <input asp-for="AvatarUrl" class="form-control" />
-                <span asp-validation-for="AvatarUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BannerPublicId" class="control-label"></label>
-                <input asp-for="BannerPublicId" class="form-control" />
-                <span asp-validation-for="BannerPublicId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BannerUrl" class="control-label"></label>
-                <input asp-for="BannerUrl" class="form-control" />
-                <span asp-validation-for="BannerUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfCreation" class="control-label"></label>
-                <input asp-for="DateOfCreation" class="form-control" />
-                <span asp-validation-for="DateOfCreation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedAt" class="control-label"></label>
-                <input asp-for="DeletedAt" class="form-control" />
-                <span asp-validation-for="DeletedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmailVerified" class="control-label"></label>
-                <input asp-for="EmailVerified" class="form-control" />
-                <span asp-validation-for="EmailVerified" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Height" class="control-label"></label>
-                <input asp-for="Height" class="form-control" />
-                <span asp-validation-for="Height" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PasswordUpdatedAt" class="control-label"></label>
-                <input asp-for="PasswordUpdatedAt" class="form-control" />
-                <span asp-validation-for="PasswordUpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ResetPasswordToken" class="control-label"></label>
-                <input asp-for="ResetPasswordToken" class="form-control" />
-                <span asp-validation-for="ResetPasswordToken" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ResetPasswordTokenExpiry" class="control-label"></label>
-                <input asp-for="ResetPasswordTokenExpiry" class="form-control" />
-                <span asp-validation-for="ResetPasswordTokenExpiry" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SecondLastName" class="control-label"></label>
-                <input asp-for="SecondLastName" class="form-control" />
-                <span asp-validation-for="SecondLastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SecondName" class="control-label"></label>
-                <input asp-for="SecondName" class="form-control" />
-                <span asp-validation-for="SecondName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VerificationToken" class="control-label"></label>
-                <input asp-for="VerificationToken" class="form-control" />
-                <span asp-validation-for="VerificationToken" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VerificationTokenExpiry" class="control-label"></label>
-                <input asp-for="VerificationTokenExpiry" class="form-control" />
-                <span asp-validation-for="VerificationTokenExpiry" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Weight" class="control-label"></label>
-                <input asp-for="Weight" class="form-control" />
-                <span asp-validation-for="Weight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
