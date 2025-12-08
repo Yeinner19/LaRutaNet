@@ -60,10 +60,9 @@ namespace LaRutaNet.Controllers
         {
             if (ModelState.IsValid)
             {
-                // ✅ VALORES PREDETERMINADOS
                 community.Active = 1;
                 community.DateOfCreation = DateTime.UtcNow;
-                community.CreatorId = 1; // ← aquí puedes poner el valor fijo que tú quieras
+                community.CreatorId = 1;
                 community.AllowsPosts = 1;
 
                 _context.Add(community);
