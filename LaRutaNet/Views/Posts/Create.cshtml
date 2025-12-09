@@ -4,96 +4,97 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Crear Post</h1>
 
 <h4>Post</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Comentarios" class="control-label"></label>
-                <input asp-for="Comentarios" class="form-control" />
-                <span asp-validation-for="Comentarios" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Compartidos" class="control-label"></label>
-                <input asp-for="Compartidos" class="form-control" />
-                <span asp-validation-for="Compartidos" class="text-danger"></span>
-            </div>
+
+            <!-- CONTENIDO -->
             <div class="form-group">
                 <label asp-for="Contenido" class="control-label"></label>
                 <input asp-for="Contenido" class="form-control" />
                 <span asp-validation-for="Contenido" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaCreacion" class="control-label"></label>
-                <input asp-for="FechaCreacion" class="form-control" />
-                <span asp-validation-for="FechaCreacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HasMedia" class="control-label"></label>
-                <input asp-for="HasMedia" class="form-control" />
-                <span asp-validation-for="HasMedia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImagePublicId" class="control-label"></label>
-                <input asp-for="ImagePublicId" class="form-control" />
-                <span asp-validation-for="ImagePublicId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageThumbnailUrl" class="control-label"></label>
-                <input asp-for="ImageThumbnailUrl" class="form-control" />
-                <span asp-validation-for="ImageThumbnailUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Likes" class="control-label"></label>
-                <input asp-for="Likes" class="form-control" />
-                <span asp-validation-for="Likes" class="text-danger"></span>
-            </div>
+
+            <!-- TYPE -->
             <div class="form-group">
                 <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
+                <select asp-for="Type" class="form-control" id="typeSelect">
+                    <option value="">-- Selecciona una categoría --</option>
+                    <option value="COMMUNITY">Comunidad</option>
+                    <option value="SERVICE">Servicio</option>
+                    <option value="USER">Usuario</option>
+                </select>
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaActualizacion" class="control-label"></label>
-                <input asp-for="FechaActualizacion" class="form-control" />
-                <span asp-validation-for="FechaActualizacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AuthorId" class="control-label"></label>
-                <select asp-for="AuthorId" class ="form-control" asp-items="ViewBag.AuthorId"></select>
-            </div>
-            <div class="form-group">
+
+            <!-- COMMUNITY -->
+            <div class="form-group" id="communityDiv" style="display:none">
                 <label asp-for="CommunityId" class="control-label"></label>
-                <select asp-for="CommunityId" class ="form-control" asp-items="ViewBag.CommunityId"></select>
+                <select asp-for="CommunityId" class="form-control" asp-items="ViewBag.CommunityId">
+                    <option value="">-- Seleccione una comunidad --</option>
+                </select>
             </div>
-            <div class="form-group">
+
+            <!-- SERVICE -->
+            <div class="form-group" id="serviceDiv" style="display:none">
                 <label asp-for="ServiceId" class="control-label"></label>
-                <select asp-for="ServiceId" class ="form-control" asp-items="ViewBag.ServiceId"></select>
+                <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId">
+                    <option value="">-- Seleccione un servicio --</option>
+                </select>
             </div>
-            <div class="form-group">
+
+            <!-- USER -->
+            <div class="form-group" id="userDiv" style="display:none">
                 <label asp-for="UsuarioDestinoId" class="control-label"></label>
-                <select asp-for="UsuarioDestinoId" class ="form-control" asp-items="ViewBag.UsuarioDestinoId"></select>
+                <select asp-for="UsuarioDestinoId" class="form-control" asp-items="ViewBag.UsuarioDestinoId">
+                    <option value="">-- Seleccione un usuario --</option>
+                </select>
             </div>
+
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const typeSelect = document.getElementById("typeSelect");
+        const communityDiv = document.getElementById("communityDiv");
+        const serviceDiv = document.getElementById("serviceDiv");
+        const userDiv = document.getElementById("userDiv");
+
+        typeSelect.addEventListener("change", function () {
+            communityDiv.style.display = "none";
+            serviceDiv.style.display = "none";
+            userDiv.style.display = "none";
+
+            if (this.value === "COMMUNITY") {
+                communityDiv.style.display = "block";
+            }
+            else if (this.value === "SERVICE") {
+                serviceDiv.style.display = "block";
+            }
+            else if (this.value === "USER") {
+                userDiv.style.display = "block";
+            }
+        });
+    </script>
 }

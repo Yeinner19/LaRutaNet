@@ -1,119 +1,110 @@
 ﻿@model IEnumerable<LaRutaNet.Models.Post>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Posts";
 }
 
-<h1>Index</h1>
+<h1>Listado de Posts</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Crear Nuevo Post</a>
 </p>
-<table class="table">
+
+<hr />
+
+
+<h2>Posts de Comunidades</h2>
+
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Comentarios)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Compartidos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contenido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HasMedia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePublicId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageThumbnailUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Likes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaActualizacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Community)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Service)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioDestino)
-            </th>
-            <th></th>
+            <th>Contenido</th>
+            <th>Fecha Creación</th>
+            <th>Comunidad</th>
+            <th>Autor</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model.Where(p => p.Type == "COMMUNITY"))
+        {
+            <tr>
+                <td>@item.Contenido</td>
+                <td>@item.FechaCreacion</td>
+                <td>@item.Community?.Name</td>
+                <td>@item.Author?.Id</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+
+<h2>Posts de Servicios</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comentarios)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Compartidos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contenido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasMedia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagePublicId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageThumbnailUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Likes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaActualizacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Community.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioDestino.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <th>Contenido</th>
+            <th>Fecha Creación</th>
+            <th>Servicio</th>
+            <th>Autor</th>
+            <th>Acciones</th>
         </tr>
-}
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.Type == "SERVICE"))
+        {
+            <tr>
+                <td>@item.Contenido</td>
+                <td>@item.FechaCreacion</td>
+                <td>@item.Service?.Name</td>
+                <td>@item.Author?.Id</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+
+<h2>Posts de Usuarios</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Contenido</th>
+            <th>Fecha Creación</th>
+            <th>Usuario Destino</th>
+            <th>Autor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.Type == "USER"))
+        {
+            <tr>
+                <td>@item.Contenido</td>
+                <td>@item.FechaCreacion</td>
+                <td>@item.UsuarioDestino?.Username</td>
+                <td>@item.Author?.Id</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
