@@ -1,99 +1,47 @@
 ﻿@model LaRutaNet.Models.Community
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Comunidad";
 }
 
-<h1>Delete</h1>
+<div class="delete-container">
+    <div class="delete-card shadow-sm">
+        <h2 class="delete-title">¿Estás seguro que deseas eliminar esta comunidad?</h2>
+        <p class="delete-warning">Esta acción no se puede deshacer.</p>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Community</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AllowsPosts)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AllowsPosts)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BannerPublicId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BannerPublicId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BannerUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BannerUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfCreation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateOfCreation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LogoPublicId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LogoPublicId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LogoUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LogoUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostRules)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostRules)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Creator)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Creator.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+        <dl class="row delete-dl">
+            <dt class="col-sm-3">Activo</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Active)</dd>
+
+            <dt class="col-sm-3">Permite Posts</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.AllowsPosts)</dd>
+
+            <dt class="col-sm-3">Categoría</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Category)</dd>
+
+            <dt class="col-sm-3">Fecha Creación</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.DateOfCreation)</dd>
+
+            <dt class="col-sm-3">Descripción</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Description)</dd>
+
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Name)</dd>
+
+            <dt class="col-sm-3">Creador</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(m => m.Creator.Id)</dd>
+        </dl>
+
+        <form asp-action="Delete" class="delete-form">
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn-delete-confirm">
+                Eliminar definitivamente
+            </button>
+
+            <a asp-action="Index" class="btn-back">
+                Cancelar
+            </a>
+        </form>
+    </div>
 </div>

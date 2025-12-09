@@ -4,14 +4,50 @@
     ViewData["Title"] = "Editar Comunidad";
 }
 
+<style>
+    .card-header-coral {
+        background-color: #ff6961 !important;
+        color: white !important;
+        border-radius: 12px 12px 0 0;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .btn-coral {
+        background-color: #ff6961 !important;
+        color: white !important;
+        border-radius: 12px;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .btn-coral:hover {
+            background-color: #e65a54 !important;
+        }
+
+    .btn-back {
+        border-radius: 12px;
+    }
+
+    .card {
+        border-radius: 12px !important;
+    }
+
+    label {
+        color: #444;
+    }
+</style>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-7">
 
-            <div class="card shadow-sm rounded">
-                <div class="card-body">
+            <div class="card shadow-lg">
+                <div class="card-header-coral">
+                    <h3 class="fw-bold mb-0">Editar Comunidad</h3>
+                </div>
 
-                    <h3 class="text-center mb-4">Editar Comunidad</h3>
+                <div class="card-body p-4">
 
                     <form asp-action="Edit" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
@@ -19,39 +55,40 @@
                         <input type="hidden" asp-for="Id" />
 
                         <!-- Categoría -->
-                        <div class="form-group mb-3">
+                        <div class="mb-3">
                             <label asp-for="Category" class="form-label fw-semibold"></label>
-                            <select id="category" name="category" class="form-control" required>
+                            <select asp-for="Category" class="form-select shadow-sm" required>
                                 <option value="">Seleccione una categoría</option>
-                                <option value="NUTRITION">NUTRICIÓN</option>
-                                <option value="PERSONAL_DEVELOPMENT">DESARROLLO PERSONAL</option>
-                                <option value="FITNESS">FITNESS</option>
+                                <option value="NUTRITION">Nutrición</option>
+                                <option value="PERSONAL_DEVELOPMENT">Desarrollo Personal</option>
+                                <option value="FITNESS">Fitness</option>
                             </select>
                             <span asp-validation-for="Category" class="text-danger small"></span>
                         </div>
 
                         <!-- Descripción -->
-                        <div class="form-group mb-3">
+                        <div class="mb-3">
                             <label asp-for="Description" class="form-label fw-semibold"></label>
-                            <textarea asp-for="Description" class="form-control" rows="3"
+                            <textarea asp-for="Description" class="form-control shadow-sm" rows="3"
                                       placeholder="Describe la comunidad..."></textarea>
                             <span asp-validation-for="Description" class="text-danger small"></span>
                         </div>
 
                         <!-- Nombre -->
-                        <div class="form-group mb-4">
+                        <div class="mb-4">
                             <label asp-for="Name" class="form-label fw-semibold"></label>
-                            <input asp-for="Name" class="form-control"
+                            <input asp-for="Name" class="form-control shadow-sm"
                                    placeholder="Nombre de la comunidad" />
                             <span asp-validation-for="Name" class="text-danger small"></span>
                         </div>
 
                         <!-- Botones -->
                         <div class="d-flex justify-content-between">
-                            <a asp-action="Index" class="btn btn-outline-secondary">
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-back px-4">
                                 ← Volver
                             </a>
-                            <button type="submit" class="btn btn-primary px-4">
+
+                            <button type="submit" class="btn btn-coral px-4 shadow-sm">
                                 Guardar Cambios
                             </button>
                         </div>

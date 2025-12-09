@@ -48,52 +48,57 @@ namespace LaRutaNet.Controllers
         }
 
         // GET: Posts/Create
+        // GET: Posts/Create
         public IActionResult Create()
         {
-            ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Id");
-            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Id");
-            ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Name");
+            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Name");
+            ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Username");
+
             return View();
         }
+
 
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Comentarios,Compartidos,Contenido,FechaCreacion,HasMedia,ImagePublicId,ImageThumbnailUrl,ImageUrl,Likes,Type,FechaActualizacion,AuthorId,CommunityId,ServiceId,UsuarioDestinoId")] Post post)
+        public async Task<IActionResult> Create(
+            [Bind("Contenido,Type,CommunityId,ServiceId,UsuarioDestinoId")] Post post)
         {
             if (ModelState.IsValid)
             {
+                post.AuthorId = 1;
+                post.FechaCreacion = DateTime.UtcNow;
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", post.AuthorId);
-            ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Id", post.CommunityId);
-            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Id", post.ServiceId);
-            ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Id", post.UsuarioDestinoId);
+
+            ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Name", post.CommunityId);
+            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Name", post.ServiceId);
+            ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Username", post.UsuarioDestinoId);
+
             return View(post);
         }
+
 
         // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var post = await _context.Posts.FindAsync(id);
             if (post == null)
-            {
                 return NotFound();
-            }
-            ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", post.AuthorId);
-            ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Id", post.CommunityId);
-            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Id", post.ServiceId);
-            ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Id", post.UsuarioDestinoId);
+
+            ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Name", post.CommunityId);
+            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Name", post.ServiceId);
+            ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Username", post.UsuarioDestinoId);
+
             return View(post);
         }
 
@@ -102,39 +107,47 @@ namespace LaRutaNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Comentarios,Compartidos,Contenido,FechaCreacion,HasMedia,ImagePublicId,ImageThumbnailUrl,ImageUrl,Likes,Type,FechaActualizacion,AuthorId,CommunityId,ServiceId,UsuarioDestinoId")] Post post)
+        public async Task<IActionResult> Edit(
+            long id,
+            [Bind("Id,Contenido,Type,CommunityId,ServiceId,UsuarioDestinoId")] Post post)
         {
             if (id != post.Id)
-            {
                 return NotFound();
+
+            if (!ModelState.IsValid)
+            {
+                ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Name", post.CommunityId);
+                ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Name", post.ServiceId);
+                ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Username", post.UsuarioDestinoId);
+                return View(post);
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(post);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PostExists(post.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                var postDb = await _context.Posts.FindAsync(id);
+                if (postDb == null)
+                    return NotFound();
+
+                postDb.Contenido = post.Contenido;
+                postDb.Type = post.Type;
+                postDb.CommunityId = post.CommunityId;
+                postDb.ServiceId = post.ServiceId;
+                postDb.UsuarioDestinoId = post.UsuarioDestinoId;
+                postDb.FechaActualizacion = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
             }
-            ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", post.AuthorId);
-            ViewData["CommunityId"] = new SelectList(_context.Communities, "Id", "Id", post.CommunityId);
-            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "Id", post.ServiceId);
-            ViewData["UsuarioDestinoId"] = new SelectList(_context.Users, "Id", "Id", post.UsuarioDestinoId);
-            return View(post);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PostExists(id))
+                    return NotFound();
+                else
+                    throw;
+            }
+
+            return RedirectToAction(nameof(Index));
         }
+
 
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(long? id)

@@ -8,11 +8,8 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-
-            <!-- Card con logo y título -->
             <div class="card shadow-lg border-0 rounded-3">
-                <div class="card-header text-center bg-primary text-white">
-                    <!-- Logo -->
+                <div class="card-header text-center text-white" style="background-color:#ff6961;">
                     <img src="~/images/logo.png" alt="Logo" class="mb-2" style="max-height:60px;">
                     <h2 class="fw-bold">@ViewData["Title"]</h2>
                     <p class="mb-0">Create a new account</p>
@@ -40,7 +37,8 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
 
-                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary rounded-pill">
+                        <!-- Cambiado btn-primary a rojo pastel -->
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg rounded-pill text-white" style="background-color:#ff6961;">
                             Register
                         </button>
                     </form>
@@ -62,7 +60,8 @@
                             <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    <button type="submit" class="btn btn-outline-primary me-2 mb-2"
+                                    <!-- Cambiado btn-outline-primary a rojo pastel -->
+                                    <button type="submit" class="btn me-2 mb-2" style="border:1px solid #ff6961; color:#ff6961;"
                                             name="provider" value="@provider.Name"
                                             title="Log in using your @provider.DisplayName account">
                                         @provider.DisplayName

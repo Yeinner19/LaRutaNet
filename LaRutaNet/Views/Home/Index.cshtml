@@ -2,7 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <!-- Header con logo y color rojo pastel -->
+        <div class="card-header text-center text-white" style="background-color:#ff6961;">
+            <img src="~/images/logo.png" alt="Logo" style="max-height:120px;" class="mb-3" />
+            <h1 class="fw-bold display-5">Welcome to LaRutaNet</h1>
+            <p class="mb-0">Tu plataforma para aprender y construir con ASP.NET Core</p>
+        </div>
+
+        <!-- Contenido principal con relleno -->
+        <div class="card-body p-5 text-center">
+            <h2 class="mb-4">Explora y aprende</h2>
+            <p class="lead">
+                Aprende sobre <a href="https://learn.microsoft.com/aspnet/core" target="_blank" style="color:#ff6961; font-weight:bold;">
+                    cómo construir aplicaciones web con ASP.NET Core
+                </a>.
+            </p>
+            <hr class="my-4" />
+            <p class="text-muted">Este es tu punto de partida para crear algo grande 🚀</p>
+        </div>
+    </div>
 </div>

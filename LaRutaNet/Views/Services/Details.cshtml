@@ -4,43 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Detalles del Servicio</h4>
-        </div>
-        <div class="card-body">
-            <dl class="row">
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Name)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Description)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header text-center text-white" style="background-color:#ff6961;">
+                    <h3 class="fw-bold mb-0">Detalles del Servicio</h3>
+                </div>
 
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Type)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Type)</dd>
+                <div class="card-body p-4">
+                    <dl class="row">
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Name)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
 
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Active)</dt>
-                <dd class="col-sm-9">
-                    @(Model.Active == 1 ? "Activo" : "Inactivo")
-                </dd>
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Description)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
 
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.CreatedAt)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.CreatedAt)</dd>
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Type)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Type)</dd>
 
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.DeletedAt)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.DeletedAt)</dd>
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Active)</dt>
+                        <dd class="col-sm-9">@(@Model.Active == 1 ? "Activo" : "Inactivo")</dd>
 
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Community)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Community.Id)</dd>
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.CreatedAt)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.CreatedAt)</dd>
 
-                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.UserHistory)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.UserHistory.Id)</dd>
-            </dl>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-            <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
-            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a>
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.DeletedAt)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.DeletedAt)</dd>
+
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Community)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Community.Id)</dd>
+
+                        <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.UserHistory)</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.UserHistory.Id)</dd>
+                    </dl>
+                </div>
+
+                <div class="card-footer d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">← Volver</a>
+                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn text-white rounded-pill px-4 shadow-sm" style="background-color:#ff6961;">
+                        Editar
+                    </a>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>

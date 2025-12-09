@@ -4,55 +4,83 @@
     ViewData["Title"] = "Crear Comunidad";
 }
 
-<h2 class="mb-4">Crear Nueva Comunidad</h2>
+<style>
+    .card-header-custom {
+        background-color: #ff6961 !important;
+        color: white !important;
+        border-radius: 12px 12px 0 0;
+    }
 
-<hr />
+    .btn-coral {
+        background-color: #ff6961 !important;
+        border: none !important;
+        color: white !important;
+        border-radius: 10px;
+        transition: 0.3s ease;
+    }
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <form asp-action="Create" class="card p-4 shadow-sm rounded-3">
+        .btn-coral:hover {
+            background-color: #e85c55 !important;
+        }
 
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    .form-control, .form-select {
+        border-radius: 10px !important;
+    }
+</style>
 
-            <!-- NOMBRE -->
-            <div class="form-group mb-3">
-                <label asp-for="Name" class="form-label fw-bold">Nombre de la comunidad</label>
-                <input asp-for="Name" class="form-control" placeholder="Ej: Fitness Total" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-
-            <!-- DESCRIPCIÓN -->
-            <div class="form-group mb-3">
-                <label asp-for="Description" class="form-label fw-bold">Descripción</label>
-                <textarea asp-for="Description" class="form-control" rows="3" placeholder="Describe el objetivo de la comunidad"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-
-            <!-- CATEGORÍA -->
-            <div class="form-group mb-4">
-                <label asp-for="Category" class="form-label fw-bold">Categoría</label>
-                <select asp-for="Category" class="form-control">
-                    <option value="">-- Selecciona una categoría --</option>
-                    <option value="FITNESS">Fitness</option>
-                    <option value="NUTRITION">Nutrición</option>
-                    <option value="PERSONAL_DEVELOPMENT">Desarrollo Personal</option>
-                </select>
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-
-            <!-- BOTÓN -->
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">
-                    Crear Comunidad
-                </button>
-            </div>
-        </form>
-
-        <div class="text-center mt-4">
-            <a asp-action="Index" class="text-decoration-none">
-                ⬅ Volver al listado
-            </a>
+<div class="container mt-4">
+    <div class="card shadow-sm rounded-3">
+        <div class="card-header card-header-custom">
+            <h3 class="mb-0 text-center">Crear Nueva Comunidad</h3>
         </div>
+
+        <div class="card-body">
+            <form asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <!-- NOMBRE -->
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-semibold"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Ej: Fitness Total" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- DESCRIPCIÓN -->
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold"></label>
+                    <textarea asp-for="Description" class="form-control" rows="3"
+                              placeholder="Describe el objetivo de la comunidad"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <!-- CATEGORÍA -->
+                <div class="mb-4">
+                    <label asp-for="Category" class="form-label fw-semibold"></label>
+                    <select asp-for="Category" class="form-select">
+                        <option value="">-- Selecciona una categoría --</option>
+                        <option value="FITNESS">Fitness</option>
+                        <option value="NUTRITION">Nutrición</option>
+                        <option value="PERSONAL_DEVELOPMENT">Desarrollo Personal</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+                <!-- BOTÓN -->
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-coral px-4">
+                        Crear Comunidad
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="text-decoration-none" style="color:#ff6961;">
+            ⬅ Volver al listado
+        </a>
     </div>
 </div>
 

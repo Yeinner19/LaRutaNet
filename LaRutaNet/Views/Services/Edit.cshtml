@@ -4,44 +4,57 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-warning text-dark">
-            <h4 class="mb-0">Editar Servicio</h4>
-        </div>
-        <div class="card-body">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
-                <input type="hidden" asp-for="Id" />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
-                <div class="mb-3">
-                    <label asp-for="Name" class="form-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header text-center text-white" style="background-color:#ff6961;">
+                    <h3 class="fw-bold mb-0">Editar Servicio</h3>
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Description" class="form-label"></label>
-                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="card-body p-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold"></label>
+                            <input asp-for="Name" class="form-control shadow-sm" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-semibold"></label>
+                            <textarea asp-for="Description" class="form-control shadow-sm" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Type" class="form-label fw-semibold"></label>
+                            <select asp-for="Type" class="form-select shadow-sm">
+                                <option value="">Seleccione un tipo</option>
+                                <option value="ACTIVIDAD_FISICA">Actividad Física</option>
+                                <option value="NUTRICION">Nutrición</option>
+                                <option value="DEPORTE">Deporte</option>
+                            </select>
+                            <span asp-validation-for="Type" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">← Volver</a>
+
+                            <button type="submit" class="btn text-white rounded-pill px-4 shadow-sm" style="background-color:#ff6961;">
+                                Guardar
+                            </button>
+                        </div>
+
+                    </form>
                 </div>
 
-                <div class="mb-3">
-                    <label asp-for="Type" class="form-label"></label>
-                    <select asp-for="Type" class="form-select">
-                        <option value="">Seleccione un tipo</option>
-                        <option value="ACTIVIDAD_FISICA">Actividad Física</option>
-                        <option value="NUTRICION">Nutrición</option>
-                        <option value="DEPORTE">Deporte</option>
-                    </select>
-                    <span asp-validation-for="Type" class="text-danger"></span>
-                </div>
+            </div>
 
-                <div class="d-flex justify-content-between">
-                    <a asp-action="Index" class="btn btn-secondary">Volver</a>
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>

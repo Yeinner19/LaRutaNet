@@ -35,8 +35,6 @@ public partial class Community
     public long CreatorId { get; set; }
 
 
-    public virtual ICollection<CommunityMembership> CommunityMemberships { get; set; } = new List<CommunityMembership>();
-
     public virtual User? Creator { get; set; } = null!;
 
     public virtual ICollection<Post> Posts { get; set; } = new List<Post>();

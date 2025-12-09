@@ -4,57 +4,74 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<style>
+    .card-header-coral {
+        background-color: #ff6961 !important;
+        color: white !important;
+        border-radius: 12px 12px 0 0;
+    }
 
-<div>
-    <h4>Community</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AllowsPosts)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AllowsPosts)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfCreation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateOfCreation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Creator)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Creator.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    .btn-coral {
+        background-color: #ff6961 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 10px;
+        transition: 0.3s ease;
+    }
+
+        .btn-coral:hover {
+            background-color: #e85c55 !important;
+        }
+
+    .btn-grey {
+        background-color: #6c757d !important;
+        color: white !important;
+        border-radius: 10px;
+    }
+
+    .card {
+        border-radius: 12px !important;
+    }
+
+    dt {
+        color: #444;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header card-header-coral">
+            <h4 class="mb-0 text-center">Detalles de la Comunidad</h4>
+        </div>
+
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Active)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Active)</dd>
+
+                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.AllowsPosts)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AllowsPosts)</dd>
+
+                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Category)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Category)</dd>
+
+                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.DateOfCreation)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.DateOfCreation)</dd>
+
+                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Description)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Name)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(model => model.Creator)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Creator.Id)</dd>
+            </dl>
+        </div>
+
+        <div class="card-footer d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-grey px-4">⬅ Volver</a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-coral px-4">Editar</a>
+        </div>
+    </div>
 </div>

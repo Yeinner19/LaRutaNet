@@ -1,119 +1,120 @@
 ﻿@model IEnumerable<LaRutaNet.Models.Post>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Posts";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-uppercase" style="color:#ff6961;">
+            <i class="bi bi-card-text me-2"></i> Listado de Posts
+        </h1>
+        <a asp-action="Create" class="btn text-white rounded-pill px-4 shadow-sm" style="background-color:#ff6961;">
+            + Crear Nuevo Post
+        </a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Comentarios)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Compartidos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contenido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HasMedia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePublicId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageThumbnailUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Likes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaActualizacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Community)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Service)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioDestino)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comentarios)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Compartidos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contenido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HasMedia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagePublicId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageThumbnailUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Likes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaActualizacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Community.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioDestino.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <hr />
+
+    <!-- Posts de Comunidades -->
+    <h2 class="fw-semibold mb-3" style="color:#ff6961;">Posts de Comunidades</h2>
+    <div class="card shadow-lg border-0 rounded-3 mb-4">
+        <div class="card-body">
+            <table class="table table-hover align-middle table-bordered">
+                <thead class="text-center text-white" style="background-color:#ff6961;">
+                    <tr>
+                        <th>Contenido</th>
+                        <th>Fecha Creación</th>
+                        <th>Comunidad</th>
+                        <th>Autor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(p => p.Type == "COMMUNITY"))
+                    {
+                        <tr class="text-center">
+                            <td>@item.Contenido</td>
+                            <td>@item.FechaCreacion</td>
+                            <td>@item.Community?.Name</td>
+                            <td>@item.Author?.Id</td>
+                            <td class="text-nowrap">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm text-white rounded-pill" style="background-color:#ff6961;">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary rounded-pill">Detalles</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger rounded-pill">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Posts de Servicios -->
+    <h2 class="fw-semibold mb-3" style="color:#ff6961;">Posts de Servicios</h2>
+    <div class="card shadow-lg border-0 rounded-3 mb-4">
+        <div class="card-body">
+            <table class="table table-hover align-middle table-bordered">
+                <thead class="text-center text-white" style="background-color:#ff6961;">
+                    <tr>
+                        <th>Contenido</th>
+                        <th>Fecha Creación</th>
+                        <th>Servicio</th>
+                        <th>Autor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(p => p.Type == "SERVICE"))
+                    {
+                        <tr class="text-center">
+                            <td>@item.Contenido</td>
+                            <td>@item.FechaCreacion</td>
+                            <td>@item.Service?.Name</td>
+                            <td>@item.Author?.Id</td>
+                            <td class="text-nowrap">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm text-white rounded-pill" style="background-color:#ff6961;">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary rounded-pill">Detalles</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger rounded-pill">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Posts de Usuarios -->
+    <h2 class="fw-semibold mb-3" style="color:#ff6961;">Posts de Usuarios</h2>
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body">
+            <table class="table table-hover align-middle table-bordered">
+                <thead class="text-center text-white" style="background-color:#ff6961;">
+                    <tr>
+                        <th>Contenido</th>
+                        <th>Fecha Creación</th>
+                        <th>Usuario Destino</th>
+                        <th>Autor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(p => p.Type == "USER"))
+                    {
+                        <tr class="text-center">
+                            <td>@item.Contenido</td>
+                            <td>@item.FechaCreacion</td>
+                            <td>@item.UsuarioDestino?.Username</td>
+                            <td>@item.Author?.Id</td>
+                            <td class="text-nowrap">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm text-white rounded-pill" style="background-color:#ff6961;">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary rounded-pill">Detalles</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger rounded-pill">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

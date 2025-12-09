@@ -16,13 +16,12 @@ public partial class LarutaContext : DbContext
     {
     }
 
-    public virtual DbSet<Comment> Comments { get; set; }
 
     public virtual DbSet<Community> Communities { get; set; }
 
-    public virtual DbSet<CommunityMembership> CommunityMemberships { get; set; }
 
-    public virtual DbSet<Like> Likes { get; set; }
+
+
 
     public virtual DbSet<Post> Posts { get; set; }
 
@@ -42,50 +41,7 @@ public partial class LarutaContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
-        modelBuilder.Entity<Comment>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("comments");
-
-            entity.HasIndex(e => e.ParentCommentId, "FK7h839m3lkvhbyv3bcdv7sm4fj");
-
-            entity.HasIndex(e => e.UserId, "FK8omq0tc18jd43bu5tjh6jvraq");
-
-            entity.HasIndex(e => e.PostId, "FKbqnvawwwv4gtlctsi3o7vs131");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Activo)
-                .HasColumnType("bit(1)")
-                .HasColumnName("activo");
-            entity.Property(e => e.Contenido)
-                .HasMaxLength(1000)
-                .HasColumnName("contenido");
-            entity.Property(e => e.FechaActualizacion)
-                .HasMaxLength(6)
-                .HasColumnName("fecha_actualizacion");
-            entity.Property(e => e.FechaCreacion)
-                .HasMaxLength(6)
-                .HasColumnName("fecha_creacion");
-            entity.Property(e => e.LikesCount).HasColumnName("likes_count");
-            entity.Property(e => e.ParentCommentId).HasColumnName("parent_comment_id");
-            entity.Property(e => e.PostId).HasColumnName("post_id");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.ParentComment).WithMany(p => p.InverseParentComment)
-                .HasForeignKey(d => d.ParentCommentId)
-                .HasConstraintName("FK7h839m3lkvhbyv3bcdv7sm4fj");
-
-            entity.HasOne(d => d.Post).WithMany(p => p.Comments)
-                .HasForeignKey(d => d.PostId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKbqnvawwwv4gtlctsi3o7vs131");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Comments)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK8omq0tc18jd43bu5tjh6jvraq");
-        });
+        
 
         modelBuilder.Entity<Community>(entity =>
         {
@@ -140,61 +96,9 @@ public partial class LarutaContext : DbContext
                 .HasConstraintName("FKehds1lhi1y9a8rweslp1esncn");
         });
 
-        modelBuilder.Entity<CommunityMembership>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+        
 
-            entity.ToTable("community_memberships");
-
-            entity.HasIndex(e => e.UserId, "FKgju0tl907079t8q0uo730jm82");
-
-            entity.HasIndex(e => new { e.CommunityId, e.UserId }, "UK31crb04sfw3hii1grpih8t5l2").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CommunityId).HasColumnName("community_id");
-            entity.Property(e => e.JoinedAt)
-                .HasMaxLength(6)
-                .HasColumnName("joined_at");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.Community).WithMany(p => p.CommunityMemberships)
-                .HasForeignKey(d => d.CommunityId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKhuw0q35omchguvw829no1pdv4");
-
-            entity.HasOne(d => d.User).WithMany(p => p.CommunityMemberships)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FKgju0tl907079t8q0uo730jm82");
-        });
-
-        modelBuilder.Entity<Like>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("likes");
-
-            entity.HasIndex(e => e.UserId, "fk_like_user");
-
-            entity.HasIndex(e => new { e.PostId, e.UserId }, "uk_like_post_user").IsUnique();
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasMaxLength(6)
-                .HasColumnName("created_at");
-            entity.Property(e => e.PostId).HasColumnName("post_id");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.Post).WithMany(p => p.LikesNavigation)
-                .HasForeignKey(d => d.PostId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_like_post");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Likes)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_like_user");
-        });
+        
 
         modelBuilder.Entity<Post>(entity =>
         {

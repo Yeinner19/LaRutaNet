@@ -37,13 +37,11 @@ public partial class Post
 
     public long? UsuarioDestinoId { get; set; }
 
-    public virtual User Author { get; set; } = null!;
+    public virtual User? Author { get; set; } = null!;
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     public virtual Community? Community { get; set; }
 
-    public virtual ICollection<Like> LikesNavigation { get; set; } = new List<Like>();
 
     public virtual Service? Service { get; set; }
 

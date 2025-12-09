@@ -4,65 +4,65 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1 class="mb-3 text-danger">Eliminar Usuario</h1>
-<h5 class="mb-4">¿Estás seguro de que deseas eliminar este usuario?</h5>
+<div class="container mt-5">
+    <h1 class="mb-3 fw-bold" style="color:#ff6961;">Eliminar Usuario</h1>
+    <h5 class="mb-4">¿Estás seguro de que deseas eliminar este usuario?</h5>
 
-<div class="card shadow-sm border-danger">
-    <div class="card-header bg-danger text-white">
-        <h4 class="mb-0">Datos del Usuario</h4>
-    </div>
+    <div class="card shadow-lg border-0 rounded-3">
+        <!-- Header rojo pastel -->
+        <div class="card-header text-white" style="background-color:#ff6961;">
+            <h4 class="mb-0">Datos del Usuario</h4>
+        </div>
 
-    <div class="card-body">
-        <dl class="row">
+        <div class="card-body p-4">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Active)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Active)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Active)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Active)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateOfCreation)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.DateOfCreation)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateOfCreation)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.DateOfCreation)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Email)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Email)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.EmailVerified)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.EmailVerified)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.EmailVerified)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.EmailVerified)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FirstName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FirstName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Gender)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Gender)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Gender)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Gender)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Height)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Height)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Height)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Height)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LastName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LastName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Role)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Role)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Role)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Role)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SecondLastName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondLastName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SecondLastName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondLastName)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SecondName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SecondName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondName)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Username)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Username)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Username)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Username)</dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Weight)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Weight)</dd>
+            </dl>
+        </div>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Weight)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Weight)</dd>
-
-        </dl>
-    </div>
-
-    <div class="card-footer d-flex justify-content-between">
-        <form asp-action="Delete" class="mb-0">
-            <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Delete" class="btn btn-danger" />
-        </form>
-
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <div class="card-footer d-flex justify-content-between">
+            <form asp-action="Delete" class="mb-0">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Eliminar" class="btn text-white rounded-pill px-4 shadow-sm" style="background-color:#ff6961;" />
+            </form>
+            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">← Volver al listado</a>
+        </div>
     </div>
 </div>

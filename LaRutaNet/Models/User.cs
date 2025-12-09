@@ -57,13 +57,12 @@ public partial class User
 
     public double? Weight { get; set; }
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
 
     public virtual ICollection<Community> Communities { get; set; } = new List<Community>();
 
-    public virtual ICollection<CommunityMembership> CommunityMemberships { get; set; } = new List<CommunityMembership>();
 
-    public virtual ICollection<Like> Likes { get; set; } = new List<Like>();
+
 
     public virtual ICollection<Post> PostAuthors { get; set; } = new List<Post>();
 

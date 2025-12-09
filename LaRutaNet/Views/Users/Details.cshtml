@@ -4,60 +4,63 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 class="mb-4">Detalles del Usuario</h1>
+<div class="container mt-5">
+    <h1 class="mb-4 fw-bold" style="color:#ff6961;">Detalles del Usuario</h1>
 
-<div class="card shadow-sm">
-    <div class="card-header">
-        <h4 class="mb-0">Información del Usuario</h4>
-    </div>
+    <div class="card shadow-lg border-0 rounded-3">
+        <!-- Header rojo pastel -->
+        <div class="card-header text-white" style="background-color:#ff6961;">
+            <h4 class="mb-0">Información del Usuario</h4>
+        </div>
 
-    <div class="card-body">
-        <dl class="row">
+        <div class="card-body p-4">
+            <dl class="row">
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Active)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Active)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Active)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Active)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.DateOfBirth)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.DateOfBirth)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateOfBirth)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.DateOfBirth)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.DateOfCreation)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.DateOfCreation)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateOfCreation)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.DateOfCreation)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Email)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Email)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.FirstName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FirstName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Gender)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Gender)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Gender)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Gender)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Height)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Height)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Height)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Height)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.LastName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LastName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Role)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Role)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Role)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Role)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.SecondLastName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondLastName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SecondLastName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondLastName)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.SecondName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondName)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SecondName)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.SecondName)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Username)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Username)</dd>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Username)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Username)</dd>
+                <dt class="col-sm-3 fw-semibold">@Html.DisplayNameFor(model => model.Weight)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Weight)</dd>
+            </dl>
+        </div>
 
-            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Weight)</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Weight)</dd>
-
-        </dl>
-    </div>
-
-    <div class="card-footer d-flex justify-content-between">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <div class="card-footer d-flex justify-content-between">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn text-white rounded-pill px-4 shadow-sm" style="background-color:#ff6961;">
+                Editar
+            </a>
+            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">← Volver al listado</a>
+        </div>
     </div>
 </div>

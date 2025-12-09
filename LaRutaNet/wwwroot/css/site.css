@@ -20,3 +20,122 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Navbar general */
+.navbar {
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+}
+
+/* Logo */
+.navbar-brand img {
+    height: 70px;
+    transition: transform 0.3s ease;
+}
+
+    .navbar-brand img:hover {
+        transform: scale(1.05);
+    }
+
+/* Links */
+.navbar-nav .nav-link {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #ff6961; /* rojo pastel */
+        border-bottom: 2px solid #ff6961;
+    }
+
+
+.navbar-nav .btn-link {
+    padding: 0;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+    .navbar-nav .btn-link:hover {
+        color: #ff6961;
+    }
+
+
+.delete-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+
+.delete-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 70%;
+    border: 2px solid #ff6961;
+}
+
+
+.delete-title {
+    color: #ff6961;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-warning {
+    text-align: center;
+    color: #d9534f;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+
+.delete-dl dt {
+    font-weight: bold;
+    color: #ff6961;
+}
+
+.delete-dl dd {
+    margin-bottom: 10px;
+}
+
+
+.delete-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+}
+
+.btn-delete-confirm {
+    background-color: #ff6961;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 200px;
+    align-self: center;
+    transition: 0.2s;
+}
+
+    .btn-delete-confirm:hover {
+        background-color: #e85a52;
+    }
+
+
+.btn-back {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+    .btn-back:hover {
+        color: #ff6961;
+    }

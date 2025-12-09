@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LaRutaNet.Models;
 
 namespace LaRutaNet.Controllers
 {
+    [Authorize]
     public class ServicesController : Controller
     {
         private readonly LarutaContext _context;
@@ -35,12 +37,22 @@ namespace LaRutaNet.Controllers
             ModelState.Remove("Community");
             ModelState.Remove("UserHistory");
 
+
+            var community = await _context.Communities
+                .FirstOrDefaultAsync(c => c.Id == 7);
+
+            if (community == null)
+            {
+                TempData["ErrorMessage"] = "No existe la comunidad requerida. Cree una comunidad antes de registrar un servicio.";
+                return RedirectToAction(nameof(Create));
+            }
+
             if (ModelState.IsValid)
             {
                 service.Active = 1;
                 service.CreatedAt = DateTime.UtcNow;
 
-                service.CommunityId = 2;   
+                service.CommunityId = 7;
                 service.UserHistoryId = 1;
 
                 _context.Services.Add(service);
