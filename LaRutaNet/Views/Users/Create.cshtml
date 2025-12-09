@@ -60,16 +60,22 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label asp-for="Gender" class="form-label fw-semibold"></label>
-                                <input asp-for="Gender" class="form-control shadow-sm" />
-                                <span asp-validation-for="Gender" class="text-danger small"></span>
+                                <label asp-for="Gender" class="form-label"></label>
+                                <select id="Gender" name="Gender" asp-for="Gender" class="form-control" required>
+                                    <option value="">Seleccione una categoría</option>
+                                    <option value="M">MASCULINO</option>
+                                    <option value="F">FEMENINO</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label asp-for="Password" class="form-label fw-semibold"></label>
-                                <input asp-for="Password" class="form-control shadow-sm" />
-                                <span asp-validation-for="Password" class="text-danger small"></span>
+                                <input type="password" asp-for="Password" class="form-control shadow-sm " aria-required="true" />
+                                <span asp-validation-for="Password" class="text-danger small "></span>
                             </div>
+
+
 
                             <div class="col-md-6 mb-3">
                                 <label asp-for="Height" class="form-label fw-semibold"></label>

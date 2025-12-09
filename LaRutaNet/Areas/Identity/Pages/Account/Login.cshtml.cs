@@ -117,13 +117,11 @@ namespace LaRutaNet.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
 
-                    // Si hay un returnUrl válido, redirige allí
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
                         return LocalRedirect(returnUrl);
                     }
 
-                    // Si no hay returnUrl, redirige al Home/Index
                     return RedirectToAction("Index", "Home");
                 }
                 if (result.RequiresTwoFactor)

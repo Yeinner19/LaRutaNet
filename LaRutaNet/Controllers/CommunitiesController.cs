@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LaRutaNet.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LaRutaNet.Controllers
 {
+    [Authorize]
     public class CommunitiesController : Controller
     {
         private readonly LarutaContext _context;
